@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_EmployeeInformation_form" model="ir.ui.view">
+        <field name="name">employee.information.form</field>
+        <field name="model">employee.information</field>
+        <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="gender"/>
+                    <field name="address"/>
+                    <field name="date"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="job_position"/>
+                    <field name="department"/>
+                    <field name="salary"/>
+                    <field name="education_level"/>
+                    <field name="marital_status"/>
+                </group>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids"/>
+                <field name="message_ids" options="{'post_refresh': 'recipients'}"/>
+            </div>
+        </form>
+        </field>
+    </record>
+
+    <record id="view_EmployeeInformation_tree" model="ir.ui.view">
+        <field name="name">employee.information.tree</field>
+        <field name="model">employee.information</field>
+        <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="age"/>
+            <field name="gender"/>
+            <field name="address"/>
+            <field name="date"/>
+            <field name="email"/>
+            <field name="phone"/>
+        </tree>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_EmployeeInformation_root"
+        name="HR Management Solutions"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_EmployeeInformation_Operations"
+        name="Operations"
+        parent="menu_EmployeeInformation_root"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_EmployeeInformation_Patient"
+        name="Patient"
+        parent="menu_EmployeeInformation_Operations"
+        action="action_EmployeeInformation"
+        sequence="10"/>
+
+    <record id="action_EmployeeInformation" model="ir.actions.act_window">
+        <field name="name">Employee Information</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.information</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Employee Information more!
+            </p>
+        </field>
+    </record>
+
+</odoo>
