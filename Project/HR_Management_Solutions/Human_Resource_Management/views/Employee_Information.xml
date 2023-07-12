@@ -7,6 +7,11 @@
         <field name="arch" type="xml">
         <form>
             <sheet>
+                <div class="oe_title">
+                    <h1>
+                        <field name="ref" readonly="1"/>
+                    </h1>
+                </div>
                 <group>
                     <field name="name"/>
                     <field name="age"/>
@@ -35,7 +40,8 @@
         <field name="model">employee.information</field>
         <field name="arch" type="xml">
         <tree>
-            <field name="name"/>
+            <field name="ref"/>
+            <field name="config_name"/>
             <field name="age"/>
             <field name="gender"/>
             <field name="address"/>
@@ -43,6 +49,26 @@
             <field name="email"/>
             <field name="phone"/>
         </tree>
+        </field>
+    </record>
+
+    <record id="view_EmployeeInformation_search" model="ir.ui.view">
+        <field name="name">employee.information.search</field>
+        <field name="model">employee.information</field>
+        <field name="arch" type="xml">
+        <search>
+            <field name="ref"/>
+            <field name="config_name"/>
+            <field name="age"/>
+            <field name="gender"/>
+            <field name="address"/>
+            <filter string="Lọc theo Nam" name="Nam" domain="[('gender', '=', 'Male')]"/>
+            <separator/>
+            <filter string="Lọc theo Nữ" name="Nữ" domain="[('gender', '=', 'Female')]"/>
+            <group expand="0" string="Group By">
+                <filter string="Nhóm theo tuổi" name="age" domain="[]" context="{'group_by': 'age'}"/>
+            </group>
+        </search>
         </field>
     </record>
 
@@ -55,17 +81,18 @@
         id="menu_EmployeeInformation_Operations"
         name="Operations"
         parent="menu_EmployeeInformation_root"
-        sequence="10"/>
+        sequence="50"/>
 
     <menuitem
         id="menu_EmployeeInformation_Patient"
-        name="Patient"
+        name="Thông tin nhân viên"
         parent="menu_EmployeeInformation_Operations"
         action="action_EmployeeInformation"
         sequence="10"/>
 
     <record id="action_EmployeeInformation" model="ir.actions.act_window">
-        <field name="name">Employee Information</field>
+        <field name="search_view_id" ref="view_EmployeeInformation_search"/>
+        <field name="name">Thông tin nhân viên</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">employee.information</field>
         <field name="view_mode">tree,form</field>
@@ -75,5 +102,4 @@
             </p>
         </field>
     </record>
-
 </odoo>

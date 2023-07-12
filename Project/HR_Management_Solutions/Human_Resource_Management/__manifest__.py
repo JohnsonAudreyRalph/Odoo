@@ -14,6 +14,7 @@
     'demo': [],
     'data': [
         'security/ir.model.access.csv',
+        'data/sequences.xml',
         'views/Employee_Information.xml',
     ],
     'license': 'LGPL-3',
