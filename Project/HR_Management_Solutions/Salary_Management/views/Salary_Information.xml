@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem
+            id="menu_SalaryInformation_Patient"
+            name="Thông tin lương"
+            parent="Human_Resource_Management.menu_EmployeeInformation_Operations"
+            action="action_SalaryInformation"
+            sequence="10"/>
+
+        <record id="view_SalaryInformation_tree" model="ir.ui.view">
+            <field name="name">salary.information.tree</field>
+            <field name="model">salary.information</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách lương">
+                    <field name="ref"/>
+                    <field name="name" options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                    <field name="Basic_Salary"/>
+                    <field name="Allowances_Incentive"/>
+                    <field name="department"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_SalaryInformation_form" model="ir.ui.view">
+            <field name="name">salary.information.form</field>
+            <field name="model">salary.information</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="ref" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="name"/>
+                            <field name="Basic_Salary"/>
+                            <field name="Allowances_Incentive"/>
+                            <field name="department"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_SalaryInformation" model="ir.actions.act_window">
+            <field name="name">Thông tin tiền lương</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">salary.information</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Salary Information more!
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
